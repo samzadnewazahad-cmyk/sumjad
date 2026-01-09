@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমার স্কুল - আধুনিক ওয়েবসাইট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Nirmala UI', sans-serif;
+        }
+        
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff4e50;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* হেডার স্টাইল */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #ffeb3b;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* হিরো সেকশন */
+        .hero {
+            padding: 5rem 0;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            border-bottom: 5px solid var(--accent);
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #555;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 20px rgba(106, 17, 203, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.4);
+        }
+        
+        /* ছবি গ্যালারী সেকশন */
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+        
+        .upload-section {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .upload-area {
+            border: 3px dashed var(--primary);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 1.5rem 0;
+            background-color: rgba(106, 17, 203, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            background-color: rgba(106, 17, 203, 0.1);
+            transform: scale(1.01);
+        }
+        
+        .upload-area i {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .upload-area h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .upload-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .upload-btn:hover {
+            background-color: #ff3336;
+            transform: scale(1.05);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 4rem;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background: white;
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-info {
+            padding: 1.2rem;
+        }
+        
+        .gallery-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* ফুটার */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: #ffeb3b;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* রেস্পন্সিভ ডিজাইন */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .upload-area {
+                padding: 2rem 1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- হেডার সেকশন -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-school"></i>
+                <h1>আমার <span>স্কুল</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">হোম</a></li>
+                    <li><a href="#gallery">গ্যালারী</a></li>
+                    <li><a href="#upload">ছবি আপলোড</a></li>
+                    <li><a href="#about">আমাদের সম্পর্কে</a></li>
+                    <li><a href="#contact">যোগাযোগ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- হিরো সেকশন -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>স্বাগতম আমাদের স্কুল ওয়েবসাইটে</h2>
+            <p>এটি একটি সম্পূর্ণ আধুনিক ও রঙিন ওয়েবসাইট যেখানে আপনি সহজেই আপনার পছন্দের ছবি যোগ করতে পারবেন এবং স্কুলের বিভিন্ন তথ্য শেয়ার করতে পারবেন।</p>
+            <a href="#upload" class="cta-button">ছবি আপলোড করুন</a>
+        </div>
+    </section>
+
+    <!-- গ্যালারী সেকশন -->
+    <section class="container" id="gallery">
+        <h2 class="section-title">আমাদের গ্যালারী</h2>
+        <div class="gallery" id="imageGallery">
+            <!-- ছবিগুলো এখানে যুক্ত হবে -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="স্কুল ভবন" class="gallery-img">
+                <div class="gallery-info">
+                    <h4>আমাদের স্কুল ভবন</h4>
+                    <p>আমাদের সুন্দর ও মনোরম স্কুল ভবন</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="ক্লাসরুম" class="gallery-img">
+                <div class="gallery-info">
+                    <h4>আধুনিক ক্লাসরুম</h4>
+                    <p>সজ্জিত ও প্রযুক্তি সমৃদ্ধ ক্লাসরুম</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="খেলার মাঠ" class="gallery-img">
+                <div class="gallery-info">
+                    <h4>খেলার মাঠ</h4>
+                    <p>বৃহৎ ও সুসজ্জিত খেলার মাঠ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ছবি আপলোড সেকশন -->
+    <section class="container" id="upload">
+        <h2 class="section-title">আপলোড করুন আপনার ছবি</h2>
+        <div class="upload-section">
+            <p>নিচের বক্সে ক্লিক করুন অথবা ছবি ড্র্যাগ করে আনুন। আপনি আপনার পছন্দের যেকোনো ছবি আপলোড করতে পারেন।</p>
+            
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>ছবি আপলোড করুন</h3>
+                <p>ক্লিক করুন অথবা ছবি এখানে ড্র্যাগ করুন</p>
+                <p>সাপোর্টেড ফরম্যাট: JPG, PNG, GIF (সর্বোচ্চ সাইজ: 5MB)</p>
+                
+                <input type="file" id="fileInput" accept="image/*">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-folder-open"></i> ফাইল নির্বাচন করুন
+                </button>
+            </div>
+            
+            <div id="uploadStatus"></div>
+        </div>
+    </section>
+
+    <!-- ফুটার -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>আমাদের স্কুল</h3>
+                    <p>একটি আধুনিক শিক্ষাপ্রতিষ্ঠান যেখানে শিক্ষার্থীদের সর্বোচ্চ বিকাশের জন্য সর্বাত্মক সহযোগিতা করা হয়। আমরা আধুনিক প্রযুক্তি ও পাঠ্যক্রমের মাধ্যমে শিক্ষাদান করে থাকি।</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>যোগাযোগ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ১২৩ স্কুল রোড, শিক্ষানগর, ঢাকা</p>
+                    <p><i class="fas fa-phone"></i> +৮৮০ ১২৩৪ ৫৬৭৮৯</p>
+                    <p><i class="fas fa-envelope"></i> info@amarschool.edu.bd</p>
+                    <p><i class="fas fa-clock"></i> সময়: সকাল ৮টা - বিকাল ৫টা</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>দ্রুত লিংক</h3>
+                    <ul style="list-style: none;">
+                        <li><a href="#home" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">হোম</a></li>
+                        <li><a href="#gallery" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">গ্যালারী</a></li>
+                        <li><a href="#upload" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">ছবি আপলোড</a></li>
+                        <li><a href="#about" style="color: #ddd; text-decoration: none; display: block; margin-bottom: 10px;">আমাদের সম্পর্কে</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>কপিরাইট © ২০২৩ আমার স্কুল | সকল অধিকার সংরক্ষিত</p>
+                <p>ডিজাইন ও ডেভেলপমেন্ট: স্কুল আইটি টিম</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ছবি আপলোড ফাংশনালিটি
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('fileInput');
+            const uploadArea = document.getElementById('uploadArea');
+            const uploadStatus = document.getElementById('uploadStatus');
+            const imageGallery = document.getElementById('imageGallery');
+            
+            // ড্র্যাগ এন্ড ড্রপ ফাংশনালিটি
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadArea.style.backgroundColor = 'rgba(106, 17, 203, 0.2)';
+                uploadArea.style.borderColor = 'var(--accent)';
+            });
+            
+            uploadArea.addEventListener('dragleave', function() {
+                uploadArea.style.backgroundColor = 'rgba(106, 17, 203, 0.05)';
+                uploadArea.style.borderColor = 'var(--primary)';
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadArea.style.backgroundColor = 'rgba(106, 17, 203, 0.05)';
+                uploadArea.style.borderColor = 'var(--primary)';
+                
+                if (e.dataTransfer.files.length) {
+                    handleImageUpload(e.dataTransfer.files[0]);
+                }
+            });
+            
+            // ফাইল নির্বাচন ফাংশনালিটি
+            fileInput.addEventListener('change', function(e) {
+                if (e.target.files.length) {
+                    handleImageUpload(e.target.files[0]);
+                }
+            });
+            
+            // ছবি আপলোড হ্যান্ডলার
+            function handleImageUpload(file) {
+                // ফাইল ভ্যালিডেশন
+                if (!file.type.match('image.*')) {
+                    showStatus('শুধুমাত্র ছবি ফাইল আপলোড করা যাবে!', 'error');
+                    return;
+                }
+                
+                if (file.size > 5 * 1024 * 1024) {
+                    showStatus('ফাইলের সাইজ 5MB এর কম হতে হবে!', 'error');
+                    return;
+                }
+                
+                // ফাইল রিডার
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // নতুন গ্যালারী আইটেম তৈরি
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    
+                    // ইউনিক আইডি জেনারেট
+                    const timestamp = new Date().getTime();
+                    const randomId = Math.floor(Math.random() * 1000);
+                    
+                    galleryItem.innerHTML = `
+                        <img src="${e.target.result}" alt="আপলোড করা ছবি" class="gallery-img">
+                        <div class="gallery-info">
+                            <h4>আপনার ছবি #${timestamp + randomId}</h4>
+                            <p>আপলোড করা হয়েছে: ${new Date().toLocaleDateString('bn-BD')}</p>
+                            <button onclick="removeImage(this)" class="upload-btn" style="margin-top: 10px; padding: 8px 15px; font-size: 0.9rem; background: #dc3545;">
+                                <i class="fas fa-trash"></i> মুছে ফেলুন
+                            </button>
+                        </div>
+                    `;
+                    
+                    // গ্যালারির শুরুতে যোগ করুন
+                    imageGallery.prepend(galleryItem);
+                    
+                    // সফল মেসেজ দেখান
+                    showStatus('ছবিটি সফলভাবে আপলোড হয়েছে!', 'success');
+                    
+                    // ফাইল ইনপুট রিসেট
+                    fileInput.value = '';
+                };
+                
+                reader.readAsDataURL(file);
+            }
+            
+            // স্ট্যাটাস মেসেজ দেখানোর ফাংশন
+            function showStatus(message, type) {
+                uploadStatus.innerHTML = `
+                    <div style="padding: 15px; border-radius: 10px; margin-top: 20px; 
+                    background-color: ${type === 'success' ? 'rgba(46, 204, 113, 0.2)' : 'rgba(255, 78, 80, 0.2)'}; 
+                    color: ${type === 'success' ? '#27ae60' : '#e74c3c'}; 
+                    border: 1px solid ${type === 'success' ? '#27ae60' : '#e74c3c'};">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                        ${message}
+                    </div>
+                `;
+                
+                // ৫ সেকেন্ড পর মেসেজ অদৃশ্য করা
+                setTimeout(() => {
+                    uploadStatus.innerHTML = '';
+                }, 5000);
+            }
+            
+            // স্ক্রল এনিমেশন
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+        
+        // ছবি মুছে ফেলার ফাংশন
+        function removeImage(button) {
+            const galleryItem = button.closest('.gallery-item');
+            galleryItem.style.transform = 'scale(0.8)';
+            galleryItem.style.opacity = '0';
+            
+            setTimeout(() => {
+                galleryItem.remove();
+                document.getElementById('uploadStatus').innerHTML = `
+                    <div style="padding: 15px; border-radius: 10px; margin-top: 20px; 
+                    background-color: rgba(52, 152, 219, 0.2); 
+                    color: #2980b9; 
+                    border: 1px solid #2980b9;">
+                        <i class="fas fa-info-circle"></i>
+                        ছবিটি মুছে ফেলা হয়েছে!
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    document.getElementById('uploadStatus').innerHTML = '';
+                }, 3000);
+            }, 300);
+        }
+        
+        // উদাহরণ স্বরূপ আরো কিছু ছবি যোগ করার ফাংশন
+        function addSampleImages() {
+            const sampleImages = [
+                {
+                    url: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                    title: "বৈজ্ঞানিক গবেষণাগার",
+                    description: "আধুনিক বৈজ্ঞানিক গবেষণাগার"
+                },
+                {
+                    url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                    title: "স্কুল লাইব্রেরী",
+                    description: "সমৃদ্ধ বইয়ের সংগ্রহ"
+                },
+                {
+                    url: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                    title: "বার্ষিক ক্রীড়া প্রতিযোগিতা",
+                    description: "প্রতি বছরের ক্রীড়া প্রতিযোগিতা"
+                }
+            ];
+            
+            const gallery = document.getElementById('imageGallery');
+            
+            sampleImages.forEach(image => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                galleryItem.innerHTML = `
+                    <img src="${image.url}" alt="${image.title}" class="gallery-img">
+                    <div class="gallery-info">
+                        <h4>${image.title}</h4>
+                        <p>${image.description}</p>
+                    </div>
+                `;
+                
+                gallery.appendChild(galleryItem);
+            });
+        }
+        
+        // পেজ লোড হওয়ার পর কিছু উদাহরণ ছবি যোগ করুন
+        window.onload = addSampleImages;
+    </script>
+</body>
+</html>
